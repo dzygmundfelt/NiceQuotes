@@ -16,8 +16,8 @@ public class QuoteController {
 
     @RequestMapping("/")
     public ResponseEntity<ArrayList<Quote>> getAllQuotes() {
-        Quote quote = new Quote("Come on people, now. Smile on your brother. Everybody get together, etc.");
-        Quote another = new Quote("We're born to live a life and die. Life's so damn hard, man I wonder why.");
+        Quote quote = new Quote("Come on people, now. Smile on your brother. Everybody get together, etc.", "some hippies");
+        Quote another = new Quote("We're born to live a life and die. Life's so damn hard, man I wonder why.", "O.C.");
         ArrayList<Quote> quotes = new ArrayList<>();
         quotes.add(quote);
         quotes.add(another);
