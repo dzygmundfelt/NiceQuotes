@@ -1,0 +1,2 @@
+INSERT INTO Quote VALUES (1,'some hippies','Come on people, now. Smile on your brother. Everybody get together, etc.')
+INSERT INTO Quote VALUES (2,'O.C','Were born to live a life and die. Lifes so damn hard, man I wonder why.')

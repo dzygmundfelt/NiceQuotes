@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HomeService } from './homeService'
+import { HomeService } from './homeService';
+import { QuotePage } from '../quote/quote'
 
 @Component({
   selector: 'page-home',
@@ -16,6 +17,11 @@ export class HomePage {
       this.quotes = data;
       console.log(data);
     })
+  }
+
+  goToQuote(id:Number) {
+    this.navCtrl.push(QuotePage, {quoteId: id});
+    console.log(id + " pushed");
   }
 
 }

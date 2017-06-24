@@ -1,27 +1,44 @@
 package io.zipcoder.nicequotes.controller;
 
 import io.zipcoder.nicequotes.model.Quote;
+import io.zipcoder.nicequotes.repository.QuoteRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.inject.Inject;
 
 @RequestMapping("/quotes")
 @RestController
 @CrossOrigin("http://localhost:8100")
 public class QuoteController {
 
+    @Inject
+    QuoteRepository qr;
+
     @RequestMapping("/")
-    public ResponseEntity<ArrayList<Quote>> getAllQuotes() {
-        Quote quote = new Quote("Come on people, now. Smile on your brother. Everybody get together, etc.", "some hippies");
-        Quote another = new Quote("We're born to live a life and die. Life's so damn hard, man I wonder why.", "O.C.");
-        ArrayList<Quote> quotes = new ArrayList<>();
-        quotes.add(quote);
-        quotes.add(another);
+    public ResponseEntity<Iterable<Quote>> getAllQuotes() {
+        Iterable<Quote> quotes = qr.findAll();
         return new ResponseEntity<>(quotes, HttpStatus.OK);
+    }
+
+    @RequestMapping("/{id}")
+    public ResponseEntity<Quote> getQuote(@PathVariable Long id) {
+        Quote result = qr.findOne(id);
+        if(result ==  null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteQuote(@PathVariable Long id) {
+        try {
+            qr.delete(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
