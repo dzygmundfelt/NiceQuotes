@@ -32,13 +32,20 @@ public class QuoteController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteQuote(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteQuote(@PathVariable String id) {
         try {
-            qr.delete(id);
+            qr.delete(Long.parseLong(id));
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<Quote> postQuote(@RequestParam String author, @RequestParam String words) {
+        Quote quote = new Quote(author, words);
+        qr.save(quote);
+        return new ResponseEntity<>(quote, HttpStatus.CREATED);
     }
 
 }

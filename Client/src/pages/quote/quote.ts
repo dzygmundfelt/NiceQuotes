@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { QuoteService } from './quoteService';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
   selector: 'page-quote',
   templateUrl: 'quote.html',
-  providers: [QuoteService]
+  providers: [ QuoteService ]
 })
 export class QuotePage {
 
@@ -25,8 +26,9 @@ export class QuotePage {
   }
 
   deleteQuote() {
-    this.quoteService.deleteQuote(this.navParams.get('quoteId'));
-    this.navCtrl.pop();
+    this.quoteService.deleteQuote(this.navParams.get('quoteId')).subscribe(
+      () => this.navCtrl.pop()
+    );
   }
 
   ionViewDidLoad() {

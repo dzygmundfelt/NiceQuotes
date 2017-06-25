@@ -10,8 +10,9 @@ export class QuoteService {
 
   }
 
-  deleteQuote(id:Number) {
-    this._http.delete('http://localhost:8080/quotes/' + id);
+  deleteQuote(id:Number) : Observable<any> {
+    console.log("DELETED " + 'http://localhost:8080/quotes/' + id);
+    return this._http.delete('http://localhost:8080/quotes/' + id);
   }
 
   getQuote(id:Number) : Observable<any> {
