@@ -1,20 +1,28 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NgModule } from '@angular/core';
 
-/**
- * Generated class for the CreatePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { CreateService } from './createService';
+
 @IonicPage()
 @Component({
   selector: 'page-create',
   templateUrl: 'create.html',
+  providers: [ CreateService ]
 })
 export class CreatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  quote = {};
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public createService: CreateService) {
+  }
+
+  addQuote() {
+    this.createService.addQuote(this.quote)
+      .map(res => res.json())
+      .subscribe(() => this.navCtrl.pop());
   }
 
   ionViewDidLoad() {

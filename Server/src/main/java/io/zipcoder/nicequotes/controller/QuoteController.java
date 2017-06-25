@@ -42,8 +42,7 @@ public class QuoteController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Quote> postQuote(@RequestParam String author, @RequestParam String words) {
-        Quote quote = new Quote(author, words);
+    public ResponseEntity<Quote> postQuote(@RequestBody Quote quote) {
         qr.save(quote);
         return new ResponseEntity<>(quote, HttpStatus.CREATED);
     }

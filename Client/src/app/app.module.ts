@@ -4,29 +4,35 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { QuotePage } from '../pages/quote/quote';
+import { CreatePage } from '../pages/create/create';
 
 import { HomeService } from '../pages/home/homeService';
 import { QuoteService } from '../pages/quote/quoteService';
+import { CreateService } from '../pages/create/createService';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    QuotePage
+    QuotePage,
+    CreatePage
   ],
   imports: [
     BrowserModule, HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    QuotePage
+    QuotePage,
+    CreatePage
   ],
   providers: [
     StatusBar,
