@@ -17,7 +17,7 @@
       <ion-label>Words</ion-label>
       <ion-textarea [(ngModel)]="quote.words" name="words"></ion-textarea>
     </ion-item>
-    <button ion-button round type="submit" block>Save changes</button>
-    <button ion-button round (click)="deleteQuote()">Delete this quote</button>
+    <button ion-button round type="submit">Save changes</button>
   </form>
+  <button ion-button round (click)="deleteQuote()">Delete this quote</button>
 </ion-content>
