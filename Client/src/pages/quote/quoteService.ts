@@ -21,4 +21,11 @@ export class QuoteService {
       .map(res => res.json());
   }
 
+  updateQuote(id: Number, quote: any) : Observable<any> {
+    let headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this._http.put('http://localhost:8080/quotes/' + id,
+      JSON.stringify(quote), {headers: headers})
+  }
+
 }

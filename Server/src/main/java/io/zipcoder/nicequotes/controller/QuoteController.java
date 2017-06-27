@@ -47,4 +47,13 @@ public class QuoteController {
         return new ResponseEntity<>(quote, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Quote> editQuote(@PathVariable Long id, @RequestBody Quote quote) {
+        Quote oldQuote = qr.findOne(id);
+        oldQuote.setAuthor(quote.getAuthor());
+        oldQuote.setWords(quote.getWords());
+        qr.save(quote);
+        return new ResponseEntity<>(quote, HttpStatus.OK);
+    }
+
 }
