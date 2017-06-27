@@ -50,10 +50,10 @@ public class QuoteController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Quote> editQuote(@PathVariable Long id, @RequestBody Quote quote) {
         Quote oldQuote = qr.findOne(id);
-        oldQuote.setAuthor(quote.getAuthor());
         oldQuote.setWords(quote.getWords());
-        qr.save(quote);
-        return new ResponseEntity<>(quote, HttpStatus.OK);
+        oldQuote.setAuthor(quote.getAuthor());
+        qr.save(oldQuote);
+        return new ResponseEntity<>(oldQuote, HttpStatus.OK);
     }
 
 }
