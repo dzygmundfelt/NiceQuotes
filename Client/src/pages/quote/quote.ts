@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { QuoteService } from './quoteService';
+import { QuoteService } from '../../services/quoteService';
 import { HomePage } from '../home/home';
 
 @IonicPage()

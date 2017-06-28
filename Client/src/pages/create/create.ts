@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgModule } from '@angular/core';
 
-import { CreateService } from './createService';
+import { QuoteService } from '../../services/quoteService';
 
 @IonicPage()
 @Component({
   selector: 'page-create',
   templateUrl: 'create.html',
-  providers: [ CreateService ]
+  providers: [ QuoteService ]
 })
 export class CreatePage {
 
@@ -16,11 +16,11 @@ export class CreatePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public createService: CreateService) {
+              public quoteService: QuoteService) {
   }
 
   addQuote() {
-    this.createService.addQuote(this.quote)
+    this.quoteService.addQuote(this.quote)
       .map(res => res.json())
       .subscribe(() => this.navCtrl.pop());
   }

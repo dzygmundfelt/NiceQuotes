@@ -11,9 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { QuotePage } from '../pages/quote/quote';
 import { CreatePage } from '../pages/create/create';
 
-import { HomeService } from '../pages/home/homeService';
-import { QuoteService } from '../pages/quote/quoteService';
-import { CreateService } from '../pages/create/createService';
+import { QuoteService } from '../services/quoteService';
 
 @NgModule({
   declarations: [

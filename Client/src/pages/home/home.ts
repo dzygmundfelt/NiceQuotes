@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HomeService } from './homeService';
+
 import { QuotePage } from '../quote/quote';
 import { CreatePage } from '../create/create';
+
+import { QuoteService } from '../../services/quoteService';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [HomeService]
+  providers: [QuoteService]
 })
 export class HomePage {
 
   quotes: any;
   createPage = CreatePage;
 
-  constructor(public navCtrl: NavController, public homeService:HomeService) {
+  constructor(public navCtrl: NavController, public quoteService:QuoteService) {
   }
 
   goToQuote(id:Number) {
@@ -23,7 +25,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.homeService.getAllQuotes().subscribe(data => {
+    this.quoteService.getAllQuotes().subscribe(data => {
           this.quotes = data;
           console.log(data);
         });

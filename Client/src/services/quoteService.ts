@@ -10,6 +10,11 @@ export class QuoteService {
 
   }
 
+  getAllQuotes(): Observable<any> {
+    return this._http.get("http://localhost:8080/quotes/")
+      .map(res=>res.json());
+  }
+
   deleteQuote(id:Number) : Observable<any> {
     console.log("DELETED " + 'http://localhost:8080/quotes/' + id);
     return this._http.delete('http://localhost:8080/quotes/' + id);
@@ -26,6 +31,12 @@ export class QuoteService {
     headers.append('Content-type', 'application/json');
     return this._http.put('http://localhost:8080/quotes/' + id,
       JSON.stringify(quote), {headers: headers})
+  }
+
+  addQuote(quote: any): Observable<any> {
+    let headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this._http.post("http://localhost:8080/quotes/", JSON.stringify(quote), {headers: headers});
   }
 
 }
